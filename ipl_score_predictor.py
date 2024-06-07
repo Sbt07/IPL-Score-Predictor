@@ -1,36 +1,34 @@
-#import the libraries
-
 import math
 import numpy as np
 import pickle
+import bz2  # Add this line to import the bz2 module
 import streamlit as st
 
-#SET PAGE WIDE
-st.set_page_config(page_title='IPL_Score_Predictor',layout="centered")
+# Set page wide
+st.set_page_config(page_title='IPL_Score_Predictor', layout="centered")
 
-#Get the ML model 
+# Get the ML model
+filename = 'data.pkl.bz2'  # Update the filename
+with bz2.BZ2File(filename, 'rb') as f:  # Decompress the pickled data
+    compressed_model = f.read()
+model = pickle.loads(compressed_model)
 
-filename='ml_model.pkl'
-model = pickle.load(open(filename,'rb'))
-
-#Title of the page with CSS
-
+# Title of the page with CSS
 st.markdown("<h1 style='text-align: center; color: #ffffff;'> ScoreXpert </h1>", unsafe_allow_html=True)
 
-#Add background image
-
+# Add background image
 st.markdown(
-         f"""
-         <style>
-         .stApp {{
-             background-color: #000000;
-         }}
-         </style>
-         """,
-         unsafe_allow_html=True
-     )
+    f"""
+    <style>
+    .stApp {{
+        background-color: #000000;
+    }}
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 
-#Add description
+#Adding description
 
 with st.expander("Description"):
     st.info("""Your AI-powered companion for IPL matches. Stay ahead of the game with accurate score predictions tailored to the current match dynamics, empowering fans and enthusiasts with real-time insights and foresight.
