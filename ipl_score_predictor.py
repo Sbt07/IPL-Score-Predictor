@@ -1,7 +1,7 @@
 import math
 import numpy as np
 import pickle
-import bz2  # Add this line to import the bz2 module
+import bz2  #import the bz2 module
 import streamlit as st
 
 # Set page wide
